@@ -1,7 +1,6 @@
 README.md
 # UsuariosApi - Gestión de Usuarios con ASP.NET Core
 Esta es una API REST desarrollada con **.NET 10** para la gestión de usuarios. Utiliza Entity Framework Core con SQLite como base de datos y sigue una arquitectura en capas (Controladores, Servicios, DTOs y Modelos).
-
 ## Características
 - CRUD Completo: Crear, Leer, Actualizar y Eliminar usuarios.
 - Validación de Datos: Validación de correo electrónico y campos obligatorios.
@@ -43,21 +42,17 @@ Opción 2: Postman.
 Puedes importar los siguientes detalles para probar las rutas:
 •	Listar Usuarios: GET https://localhost:7117/api/usuarios
 •	Obtener por ID: GET https://localhost:7117/api/usuarios/{id}
+ 
+ 
 •	Crear Usuario: POST https://localhost:7117/api/usuarios
 o	Body (JSON):
 {
   "nombre": "Juan Pérez",
   "correo": "juan.perez@example.com",
   "fechaDeNacimiento": "1995-10-15"
-}
+    }
 
-Probar la validación del correo único: POST
+ Probar la validación del correo único: POST
 
-•	Actualizar: PUT https://localhost:7XXX/api/usuarios/{id}
-•	Eliminar: DELETE https://localhost:7XXX/api/usuarios/{id}
-## Estructura del Proyecto
-•	Controllers/: Definición de los endpoints de la API.
-•	Services/: Lógica de negocio e interfaz del servicio.
-•	DTOs/: Objetos de transferencia de datos para entrada/salida.
-•	Models/: Entidades de la base de datos.
-•	Data/: Contexto de Entity Framework y configuración de SQLite.
+ 
+
