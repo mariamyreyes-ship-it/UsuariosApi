@@ -1,7 +1,4 @@
 using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using UsuariosApi.Data;
 using UsuariosApi.DTOs;
 using UsuariosApi.Models;
@@ -54,7 +51,8 @@ namespace UsuariosApi.Services
             {
                 Nombre = dto.Nombre,
                 Correo = dto.Correo,
-                FechaDeNacimiento = dto.FechaDeNacimiento
+                FechaDeNacimiento = dto.FechaDeNacimiento,
+                PasswordHash = "TemporalHash" 
             };
 
             _context.Usuarios.Add(usuario);
