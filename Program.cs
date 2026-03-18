@@ -36,7 +36,6 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 
-// Configuración de Swagger
 builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new Microsoft.OpenApi.OpenApiInfo { Title = "Usuarios API", Version = "v1" });
@@ -50,22 +49,6 @@ builder.Services.AddSwaggerGen(c =>
         In = Microsoft.OpenApi.ParameterLocation.Header,
         Description = "Ingresa: Bearer {tu_token}"
     });
-
-
-    //c.AddSecurityRequirement(new Microsoft.OpenApi.OpenApiSecurityRequirement
-    //{
-    //    {
-    //        new Microsoft.OpenApi.OpenApiSecurityScheme
-    //        {
-    //            Reference = new Microsoft.OpenApi.BaseOpenApiReference // <-- Aquí estaba el detalle
-    //            {
-    //                Type = Microsoft.OpenApi.ReferenceType.SecurityScheme,
-    //                Id = "Bearer"
-    //            }
-    //        },
-    //        Array.Empty<string>()
-    //    }
-    //});
 
     c.AddSecurityRequirement(document =>
     {
