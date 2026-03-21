@@ -14,8 +14,10 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection") ?? "Data Source=usuarios.db"));
 
 // Inyección de dependencias
+// Inyección de dependencias
 builder.Services.AddScoped<IUsuarioService, UsuarioService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<ILogService, LogService>(); 
 
 // Configuración de JWT
 var jwtKey = builder.Configuration["Jwt:Key"] ?? "ClaveSeguraDeSuperNivel2026_Gemini_123456789";

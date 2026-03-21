@@ -1,31 +1,44 @@
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using UsuariosApi.DTOs;
 using UsuariosApi.Services.Interfaces;
-using UsuariosApi.Models;
 
-namespace UsuariosApi.Controllers
+[Authorize]
+[Route("api/[controller]")]
+[ApiController]
+public class UsuariosController : ControllerBase
 {
-    [Authorize]
-    [Route("api/[controller]")]
-    [ApiController]
-    public class UsuariosController : ControllerBase
+    private readonly IUsuarioService _service;
+    private readonly ILogService _logService; 
+
+    public UsuariosController(IUsuarioService service, ILogService logService)
     {
-        private readonly IUsuarioService _service;
+        _service = service;
+        _logService = logService;
+    }
 
-        public UsuariosController(IUsuarioService service)
+    [HttpGet]
+    public async Task<IActionResult> Get() => Ok(await _service.GetAll());
+
+    [HttpPost]
+    [AllowAnonymous] 
+    public async Task<IActionResult> Create([FromBody] UsuarioCreateDto dto)
+    {
+        try
         {
-            _service = service;
+            var result = await _service.Create(dto);
+            return Ok(result);
         }
-
-        [HttpGet]
-        public async Task<IActionResult> Get() => Ok(await _service.GetAll());
-
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetById(int id)
+        catch (Exception ex)
         {
-            var user = await _service.GetById(id);
-            return user == null ? NotFound() : Ok(user);
+            return BadRequest(ex.Message);
         }
+    }
+
+    [HttpGet("logs")]
+    public async Task<IActionResult> GetLogs()
+    {
+        var logs = await _logService.ObtenerLogs();
+        return Content(logs, "application/json");
     }
 }
